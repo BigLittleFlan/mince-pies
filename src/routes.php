@@ -57,13 +57,17 @@ function get_pie_ratings() {
 		$average_loook = calculate_average('l', $values['scores']);
 
 		$pie_value = round( ( (TASTE_RATIO*$average_taste) + (LOOKS_RATIO*$average_loook) ) - ($values['ppp']/PI_SQUARED));
-		// echo $pie_name . ' gets a score of: ' . $pie_value . "\n";
+		$pie_raw_value = ( (TASTE_RATIO*$average_taste) + (LOOKS_RATIO*$average_loook) ) - ($values['ppp']/PI_SQUARED);
 
 		$pies[] = array(
 			'name' =>$pie_name,
-			'rating' => $pie_value
+			'rating' => $pie_value,
+			'non_rounded_rating' => $pie_raw_value
 		);
+		$ratings[] = $pie_raw_value;
 	}	
+
+	array_multisort($ratings, SORT_DESC, $pies);
 
 	return $pies;
 }
