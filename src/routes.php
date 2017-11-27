@@ -62,7 +62,7 @@ function get_pie_ratings() {
 		$pies[] = array(
 			'name' =>$pie_name,
 			'rating' => $pie_value,
-			'non_rounded_rating' => $pie_raw_value
+			'non_rounded_rating' => number_format($pie_raw_value, 2, '.', '')
 		);
 		$ratings[] = $pie_raw_value;
 	}	
@@ -86,3 +86,25 @@ $app->get('/json', function (Request $request, Response $response, array $args) 
     // Render index view
     return $response->withJson($pies);
 });
+
+
+$app->get('/chatbot', function (Request $request, Response $response, array $args) {
+	
+	// // $request_body = json_decode($request->body);
+	// // $action = $request_body->action;
+
+	// $return_data = json_decode ('{
+	// 		"speech": "Barack Hussein Obama II was the 44th and current President of the United States.",
+	// 		"displayText": "Barack Hussein Obama II was the 44th and current President of the United States, and the first African American to hold the office. Born in Honolulu, Hawaii, Obama is a graduate of Columbia University   and Harvard Law School, where ",
+	// 		"data": {},
+	// 		"contextOut": [],
+	// 		"source": "DuckDuckGo"
+	// 		}', TRUE);
+
+	// $pies = get_pie_ratings();
+	// $return_data['data'] = $pies;
+	
+ //    // Render index view
+ //    return $response->withJson(array('body' => $return_data));
+});
+
