@@ -14,20 +14,34 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
+    <style type="text/css">
+      .jumbotron {
+        background-color: #e74c3c;
+      }
+      .display-3, .lead {
+        color: #FFF;
+      }
+    </style>
+
   </head>
 
   <body>
 
     <div class="container">
-<!--       <header class="header clearfix">
-        <h3 class="text-muted">Mince Pie Ratings</h3>
-      </header> -->
-
       <main role="main">
 
         <div class="jumbotron">
-          <h1 class="display-3">Mince Pie Ratings</h1>
-          <p class="lead">Results of extensive research.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8">
+                <h1 class="display-3">Mince Pie Ratings</h1>
+                <p class="lead">A team of industry leading experts (although the industry is not in anyway related to food production or critiquing) have been reviewing a range of mince pies and this website is the result of those, in no way scientific or possibly even accurate, reviews.</p>
+              </div>
+              <div class="col-lg-4">
+                <img class="img-fluid" src="<?=$profile_pic?>">
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="row marketing">
@@ -51,7 +65,15 @@
             </table>
           </div>
         </div>
-
+        <div class="container">
+          <div class="row">
+            <?php foreach($instagram as $image): ?>                       
+            <div class="col col-lg-4">
+              <img src="<?=$image['image']?>" alt="<?=$image['caption']?>" class="img-fluid" style="padding-bottom: 20px;">
+            </div>
+            <?php endforeach; ?>              
+          </div>
+        </div>
       </main>
 
 <!--       <footer class="footer">

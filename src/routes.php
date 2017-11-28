@@ -76,6 +76,21 @@ function get_pie_ratings() {
 $app->get('/', function (Request $request, Response $response, array $args) {
 	$args['pies'] = get_pie_ratings();
 
+	$args['instagram'] = array();
+
+	$data = file_get_contents("https://www.instagram.com/mincepierating/?__a=1");
+	$data = json_decode($data);
+
+	$args['profile_pic'] = $data->user->profile_pic_url_hd;
+
+	$images = $data->user->media->nodes;
+	foreach ($images as $image) {
+		$args['instagram'][] = array(
+			'image' => $image->display_src,
+			'caption' => $image->caption
+		);
+	}
+
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
 });
@@ -103,7 +118,7 @@ $app->get('/chatbot', function (Request $request, Response $response, array $arg
 
 	// $pies = get_pie_ratings();
 	// $return_data['data'] = $pies;
-	
+
  //    // Render index view
  //    return $response->withJson(array('body' => $return_data));
 });
