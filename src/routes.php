@@ -30,18 +30,22 @@ $app->post('/chatbot', function (Request $request, Response $response, array $ar
 	$mince_pie_rating = new Mincepie();
 	$bot_logic = new Botlogic();
 
-	$parsed_body = $request->getParsedBody();
+	$pie_data = $mince_pie_rating->get_pie_ratings();
 
-	$data = array(
-		'intent' => $bot_logic->find_intent($parsed_body), 
-		'pies' => $mince_pie_rating->get_pie_ratings()
-	);
+	$parsed_body = $request->getParsedBody();	
+	$action = $bot_logic->find_intent($parsed_body)
 
-	$bot_response = $bot_logic->format_reponse(
-		'This is the speech',
-		'This is the display_text',
-		$data
-	);
+	switch ($action) {
+		case 'get-winning-pie':
+			$bot_response = $bot_logic->get_winning_pie($pie_data);
+			break;
+		default:
+			$bot_response = $bot_logic->format_reponse(
+				'Not sure what you want',
+				'Not sure what you want'
+			);
+			break;
+	}
 
     // Render index view
     return $response->withJson($bot_response);	
