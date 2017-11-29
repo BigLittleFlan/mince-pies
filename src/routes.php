@@ -30,10 +30,10 @@ $app->post('/chatbot', function (Request $request, Response $response, array $ar
 	$mince_pie_rating = new Mincepie();
 	$bot_logic = new Botlogic();
 
-	// $request_body = json_decode($request->body);
+	$parsed_body = $request->getParsedBody();
 
 	$data = array(
-		// 'intent' => $bot_logic->find_intent($request_body), 
+		'intent' => $bot_logic->find_intent($parsed_body), 
 		'pies' => $mince_pie_rating->get_pie_ratings()
 	);
 
