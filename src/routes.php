@@ -33,7 +33,7 @@ $app->post('/chatbot', function (Request $request, Response $response, array $ar
 	$pie_data = $mince_pie_rating->get_pie_ratings();
 
 	$parsed_body = $request->getParsedBody();	
-	$action = $bot_logic->find_intent($parsed_body)
+	$action = $bot_logic->find_intent($parsed_body);
 
 	switch ($action) {
 		case 'get-winning-pie':
