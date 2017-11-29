@@ -6,8 +6,8 @@ use Slim\Http\Response;
 // Routes
 $app->get('/', function (Request $request, Response $response, array $args) {
 	
-	$mincepierating = new Mincepie();
-	$args['pies'] = $mincepierating->get_pie_ratings();
+	$mince_pie_rating = new Mincepie();
+	$args['pies'] = $mince_pie_rating->get_pie_ratings();
 
 	$instagram = new Instagram();
 	$args['profile_pic'] = $instagram->get_profile_pic();
@@ -18,11 +18,31 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 
 $app->get('/json', function (Request $request, Response $response, array $args) {
-	$mincepierating = new Mincepie();
-	$pies = $mincepierating->get_pie_ratings();
+	$mince_pie_rating = new Mincepie();
+	$pies = $mince_pie_rating->get_pie_ratings();
 
     // Render index view
     return $response->withJson($pies);
 });
 
-$app->get('/chatbot', function (Request $request, Response $response, array $args) {});
+$app->post('/chatbot', function (Request $request, Response $response, array $args) {
+	
+	$mince_pie_rating = new Mincepie();
+	$bot_logic = new Botlogic();
+
+	// $request_body = json_decode($request->body);
+
+	$data = array(
+		// 'intent' => $bot_logic->find_intent($request_body), 
+		'pies' => $mince_pie_rating->get_pie_ratings()
+	);
+
+	$bot_response = $bot_logic->format_reponse(
+		'This is the speech',
+		'This is the display_text',
+		$data
+	);
+
+    // Render index view
+    return $response->withJson($bot_response);	
+});
