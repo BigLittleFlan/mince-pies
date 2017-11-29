@@ -23,7 +23,7 @@ class Botlogic
 		return $data->result->logic;
 	}
 
-	function format_reponse($speech = '', $display_text = '', $data = array(), $context_out = '', $source = '') {
+	function format_reponse($speech = '', $display_text = '', $data = array(), $context_out = array(), $source = '') {
 		$this->response_template = array(
 			"speech" => $speech,
 			"displayText" => $display_text,
