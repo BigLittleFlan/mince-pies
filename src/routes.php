@@ -40,7 +40,7 @@ function get_pie_ratings() {
 	$pie_gradings = array();
 
 	foreach ($user_data as $data) {
-		list($timestamp, $pie_name, $ppp, $taste, $looks, $tasting_notes) = $data;
+		list($timestamp, $pie_name, $ppp_old, $taste, $looks, $tasting_notes, $ppp) = $data;
 		$pie_gradings[$pie_name]['ppp'] = $ppp;
 		$pie_gradings[$pie_name]['scores'][] = array(
 			't' => $taste,
