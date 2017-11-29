@@ -46,4 +46,23 @@ class Botlogic
 		);
 	}
 
+	function get_leaderboard($pie_data)
+	{
+		$leaderboard = 'Current leaderboard: ';
+
+		$leaderboard_pies = array();
+
+		foreach ($pie_data as $data) {
+			$leaderboard_pies[] = $data['name'];
+		}
+
+		$leaderboard .= implode(', ', $leaderboard_pies);
+
+		return $this->format_reponse(
+			$leaderboard, 
+			$leaderboard, 
+			$pie_data
+		);
+	}
+
 }

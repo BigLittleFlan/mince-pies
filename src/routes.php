@@ -39,6 +39,9 @@ $app->post('/chatbot', function (Request $request, Response $response, array $ar
 		case 'get-winning-pie':
 			$bot_response = $bot_logic->get_winning_pie($pie_data);
 			break;
+		case 'get-leader-board':
+			$bot_response = $bot_logic->get_leaderboard($pie_data);
+			break;
 		default:
 			$bot_response = $bot_logic->format_reponse(
 				'Not sure what you want',
