@@ -53,7 +53,7 @@ class Botlogic
 		$leaderboard_pies = array();
 
 		foreach ($pie_data as $data) {
-			$leaderboard_pies[] = $data['name'];
+			$leaderboard_pies[] = $data['name'] . ' with ' . $data['averages']['non_rounded_rating'];
 		}
 
 		$leaderboard .= implode(', ', $leaderboard_pies);
