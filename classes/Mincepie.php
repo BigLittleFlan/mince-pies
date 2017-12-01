@@ -86,6 +86,10 @@ class Mincepie
 
 		// evaluate the pies!
 		foreach ($pie_gradings as $pie_id => $values) {
+			if (count($values['scores']) == 0) {
+				unset($pie_gradings[$pie_id]);
+				continue;
+			}
 
 			// Find the average of the scores
 			$average_taste = $this->calculate_average('t', $values['scores']);
